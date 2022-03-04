@@ -1,0 +1,10 @@
+.main {
+    display: flex;
+    height:fit-content;
+    width: 700px;
+    background-color: red;
+    margin: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
