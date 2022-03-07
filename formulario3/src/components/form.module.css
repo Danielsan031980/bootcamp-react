@@ -1,0 +1,13 @@
+.form {
+    width: 940px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.result{
+    width: 940px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
