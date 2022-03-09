@@ -1,0 +1,22 @@
+.form {
+    
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+.result{
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.divitions{
+    display:flex;
+    justify-content:space-between;
+    padding: 15px 10px;
+    border: 1px solid black;
+    margin: 20px;
+
+}
