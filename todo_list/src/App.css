@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+
+.tarea{
+  width: 260px;
+  display:flex;
+  flex-direction: row;
+  margin: 0 auto;
+  gap: 20px;
+
+}
+
+.claseTextnegro{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+
+}
+.check{
+
+}
+.claseTextrojo{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: red;
+
+}
+.tarea{
+  width: 360px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nuevatarea{
+  width: 360px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color:aquamarine;
+
+}
+.borrada{
+  width: 360px;
+  margin: 10px auto;
+  background-color:bisque;
+}
