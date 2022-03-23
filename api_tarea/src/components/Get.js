@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import { simpleGet } from '../actions/simpleGet';
+import { simpleAxiosGet } from '../actions/simpleAxiosGet';
 
 
 const Get = () => {
     const [personajes,setPersonajes]=useState();
     const onClick = async () =>  {
-        const response = await simpleGet("https://pokeapi.co/api/v2/pokemon?offset=700&limit=1200")
+        const response = await simpleAxiosGet("https://pokeapi.co/api/v2/pokemon?offset=700&limit=1200")
         console.log(response)
         setPersonajes(response.results)
 
