@@ -1,76 +1,75 @@
-import { set } from 'lodash';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
 import { simpleGet } from '../actions/simpleGet';
+import { useParams } from "react-router-dom"
 
 
-const Seleccion = (props ) => {
 
-    const [searchId, setSearchId] = useState();
-    const [link, setLink] = useState();
-    const [result, setResult] = useState();
+const Seleccion = ({ link }) => {
 
-    const setNumber = (target) => {
-        setSearchId(target.value)
-    }
-    const search = async () =>{
-        console.log(link)
-        if(link.results[searchId].name && link.results[searchId].height && link.results[searchId].mass && link.results[searchId].hair_color){
-            setResult({
-                name:link.results[searchId].name,
-                height:link.results[searchId].height,
-                mass:link.results[searchId].mass,
-                hair_color:link.results[searchId].hair_color
+    const [result, setResult] = useState(simpleGet(link))
+    const { id } = useParams()
 
-            })  
-        }
-        if(link.results[searchId].name && link.results[searchId].rotation_period && link.results[searchId].orbital_period && link.results[searchId].diameter){
-            setResult({
-                name:link.results[searchId].name,
-                rotation_period:link.results[searchId].rotation_period,
-                orbital_period:link.results[searchId].orbital_period,
-                diameter:link.results[searchId].diameter
-            })
+    const valores = Object.entries(result).filter((valor, index) => {
+        //console.log(valor[0])
+        if(valor[0] === "name") return valor;          
+        if(valor[0] === "title") return valor;
+        if(valor[0] === "episode_id") return valor;
+        if(valor[0] === "birth_year") return valor;
+        if(valor[0] === "gender") return valor;        
+        if(valor[0] === "hair_color") return valor;  
+        if(valor[0] === "climate") return valor;
+        if(valor[0] === "created") return valor; 
+        if(valor[0] === "diameter") return valor;          
+        if(valor[0] === "title") return valor; 
+        if(valor[0] === "opening_crawl") return valor; 
+        if(valor[0] === "producer") return valor; 
+        if(valor[0] === "average_height") return valor;         
+        if(valor[0] === "designation") return valor;
+        if(valor[0] === "vehicle_class") return valor;
+        if(valor[0] === "cargo_capacity") return valor;
+        if(valor[0] === "manufacturer") return valor;
+        return ""
+   
+    })
 
-        }
-        if(link.results[searchId].title && link.results[searchId].episode_id && link.results[searchId].opening_crawl && link.results[searchId].director){
-           setResult({
-            title:link.results[searchId].title,
-            episode_id: link.results[searchId].episode_id,
-            opening_crawl: link.results[searchId].openin_crawl,
-            director:link.results[searchId].director
+    //console.log(valores)
+
+    //console.log()
+     //console.log(id)
+    //console.log(props.elemento)
 
 
-           })
-
-        }
-        if(link.results[searchId].name && link.results[searchId].classification && link.results[searchId].designation && link.results[searchId].average_height){
-            setResult({
-                name:link.results[searchId].name,
-                classification:link.results[searchId].classification,
-                designation:link.results[searchId].designation,
-                average_height:link.results[searchId].average_height
-            })
-
-        }
-
-    }
-    
-    useEffect( async () => {
-        const response = await simpleGet(props.categoria)  
-        setLink(response);
-    }, [searchId, link]);
+    useEffect(() => {
+        async function invocar(){
+             const response =  await simpleGet(link)
+            //  console.log(props.link)
+            if(Object.keys(response.results).length > id && id !== undefined && id > 0){
+                setResult(response.results[id])
+            }
+            else{
+                setResult("")
+            }
+         }
+         invocar()
+    }, [result, id, link]);
 
     return (
         <div>
-            <button onClick={search}>Traer Datos</button>
-            <input type="number" onChange={(e) => setNumber(e.target )}></input>
-            <ul>
-                {
-                     result?
-                     Object.entries(result).map((valor, index) =>  <li value={valor[1]} key={index}   >{valor[0]} {valor[1] } </li>):
-                     ""
-                }     
-            </ul>        
+            
+                <ul className = "lista">
+                     {
+                          result? 
+                          valores.map((valor, index) => <li className="elementolista" value={valor[0]} key={index}>  <div className="elemento1">{valor[0]} </div> <div>{valor[1]} </div>   </li>):
+                          <div className="recuadroimagen">
+                              <p> Aqui no esta lo que buscas mi querido Jedi</p>
+                              <img className="image" src="https://i.blogs.es/bc2775/obiwankenobi/1366_2000.jpeg" alt="imagen obi wan"/>
+                          </div>
+                          
+                          
+                         
+                    }      
+                </ul>    
+     
         </div>
     );
 }

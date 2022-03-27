@@ -1,21 +1,18 @@
 import './App.css';
 import Busqueda from './components/Busqueda';
-import Seleccion from './components/Seleccion';
 import React, {useState, useEffect} from 'react';
 
-
 function App() {
-  const [categoria, setCategoria] = useState("https://swapi.dev/api/people")
+  const [link, setLink] = useState("https://swapi.dev/api/people")
+  const [elemento, setElemento] = useState("people")
 
+  useEffect(() => {
 
-  useEffect( async () => {
-
-}, [categoria]);
+}, [link]);
 
   return (
-    <div className="App">
-      <Busqueda setCategoria={setCategoria} />
-      <Seleccion categoria={categoria}/>
+    <div className="App">   
+      <Busqueda setLink={setLink} link={link} setElemento={setElemento} elemento={elemento}/>
     </div>
   );
 }
